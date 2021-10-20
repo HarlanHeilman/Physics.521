@@ -1,0 +1,400 @@
+\documentclass{article}
+\usepackage{algpseudocode,extramarks,fancyhdr,paralist,amsmath,amsthm,amssymb,mathtools,url,graphicx,pdfpages,tikz,pdfpages,rotating,mathtools, hyperref, bm, hyperref,amsfonts,pgf,mathrsfs,xcolor,comment,mathdots,braket,physics}
+\usepackage[plain]{algorithm}
+\usepackage[utf8]{inputenc}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ : \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\solution}{\textbf{\large Solution}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\bvec}{\vectorbold}
+\newcommand{\di}{\mathrm{d}}
+\setlength\parindent{0pt}
+\newcommand{\uv}[1]{\hat{\bvec{#1}}}
+\renewcommand{\grad}{\bvec{\nabla}}
+\newcommand{\lap}{\bvec{\nabla}^2}
+\renewcommand{\part}[2]{\partial_{#1}\left[ #2 \right]}
+\newcommand{\bpart}[2]{\left[ #1 \right]_{#2}}
+\newcommand{\bg}[1]{\begin{gather*} #1
+\end{gather*}}
+%
+%Proof and theorem structure
+%
+
+\theoremstyle{definition} 
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{important}[theorem]{Important Note}
+\newtheorem{recall}[theorem]{Recall}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{claim*}{Claim}
+
+%
+%Prefreable integration method
+%
+
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newcommand{\hmwkTitle}{Homework\ \#2}
+\newcommand{\hmwkDueDate}{Fri. Sept. 24th}
+\newcommand{\hmwkClass}{Classical Mechanics 1}
+\newcommand{\hmwkAuthorName}{\textbf{Harlan Heilman}}
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass\ }}\\
+    \textmd{\textbf{\hmwkTitle\ }}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ }\\
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}
+    Consider a free particle moving in 2D ($x$-$y$ plane) with a constant velocity.  Find
+    the trajectory for this "free" particle in an accelerated frame rotating with $\omega(t)
+    = \alpha t$ (i.e. with angle $\theta(t) = \alpha t^2/2$).  In principle you could solve
+    the problem in the rotating frame, but there is an easier way to find the trajectory.
+    Show that your trajectory explicitly satisfies Newton's law in the accelerating frame
+    including all three corrections.
+    \\
+    
+
+    \textbf{Solution}\\
+    First, we look at a few limiting cases, in particularly, from an inertial reference frame. If the particle is at the center of the merry-go-round, then the inertial observer would see it remain at the center. If the particle where held at some distance from the center say $r$, then the inertial observer would see this whizz around with some velocity $v = atr$. But from the reference frame of the center of mass of this system, we see the particle stay an equal distance from the center at all points in time. 
+    \\
+    
+    What if we where to give the particle some initial velocity. For example, roll it in from the outside. Then we could write down the equations of motion for the inertial frame, and do a coordinate transformation to get the equations of motion for the rotating frame. Test first assign directions to our vectors. 
+    \[
+        \bvec\omega(t) = at\hat{\bvec z}
+    \]
+    Thus if a particle has some initial velocity $v_b = v_r\hat{\bvec{r}}+v_\theta\hat{\bvec{\theta}}$ as viewed in the inertial frame. And we get the acceleration of the particle according to the inertial frame as $\ddot{\bvec r}(t) = 0$. But now we transform the equations to a rotating frame. In this case, from equation (8.3) we have the system as
+    \[
+        m\ddot{\bvec r}_r(t) = m\ddot{\bvec r}_i(t) - 2m\bvec{\omega}\cp \dot{\bvec{r}}_r - m\dot{\bvec{\omega}}\cp\bvec{r}_r+m\bvec{\omega}\cp\bvec{\omega}\cp\bvec{r}_r
+    \]
+    But this gives us the equation
+    \[
+        \ddot{\bvec r}(t) = 2\alpha t(v_\theta\hat{\bvec{r}}-v_r\hat{\bvec{\theta}})+\alpha(\theta\hat{\bvec{r}}-r\hat{\bvec{\theta}})+\alpha^2t^2(r\hat{\bvec{r}}-\theta\hat{\bvec{\theta}})
+    \]
+\end{homeworkProblem}
+
+\pagebreak
+
+\begin{homeworkProblem}
+    \begin{enumerate}
+        \item The Lorentz force implies the equation of motion $m\ddot{\bvec{r}} = e(\bvec{E} + c^{-1}\bvec{v}\times\bvec{B})$.  Prove that the effect of a weak uniform magnetic field $\bvec{B}$ on the motion of a charged particle in a central electric field $\bvec{E} = E(\norm{\bvec{r}})\hat{r}$ can be removed by transforming to a coordinate system rotating with an angular frequency $\omega_L = -(e/2mc)\bvec{B}$. (State precisely what "weak" means.)
+        \item Extend this result to a system of particles of given ratio $e/m$ interacting through potentials $V_{ij}(\norm{\bvec{r}_i - \bvec{r}_j})$.
+    \end{enumerate}
+    \textbf{Solution}\\
+    \textbf{Part (1)}\\
+    Lets just guess that this force can be describes by some rotation $\omega = -(e/2mc)\bvec{B}$. Thus we know that 
+    \[
+        \ddot{\bvec{r}}_b = R^{-1}(F/m - \ddot{R}\bvec{r}_b-2\dot{R}\dot{\bvec{r}})
+    \]
+    But, at $t=0$, we align the frames, and we know the external force $F = eE$
+    \[
+        \ddot{\bvec{r}} = \frac{e\bvec{E}}{m} -\omega\cp\omega\cp\bvec{r}-2\omega\cp\dot{\bvec{r}}-\dot{\omega}\cp\bvec{r}
+    \]
+    Using the vector triple product, we have the centrifugal force as $(\bvec{\omega}\vdot\bvec{r})\bvec{\omega}-|\bvec{\omega}|^2\bvec{r}$. Since the magnetic field and the particles path are perpendicular, the first term here goes to zero. Similarly, if we say $|\bvec{\omega}|<<1$, then the square of $\omega$ vanishes, and so does the centrifugal term. If we also place the limitation that the magnetic field is constant in time, then the "weird" term also goes to zero as the angular frequency is constant in time. This means that the final acceleration in the rotating frame can be written as
+    \[
+        m\ddot{\bvec{r}} = e(\bvec{E} + c^{-1}\bvec{v}\times\bvec{B})
+    \]
+    Perhaps a discussion of what defines a sufficiently small angular velocity is necessary. Since this $\omega$ is dependent on magnetic field, it is natural to just let that magnetic field go to zero. But then the particle would experience no rotational motion at all. We could also hope that the inverse speed of light "kills" $\omega$, and that would generally be true as the magnetic field must be massive in order to counteract this. However, there is also the ratio $e/m$ in the problem. This means that the particles in the system must have a sufficiently small charge to mass ratio. This Would imply that the mass or charge are inconsequential to the analysis. The only thing that maters is their ratio.
+    \textbf{Part (2)}\\
+    Extending this result to a system of particles of given ratio $e/m$ interacting through potentials $V_{ij}(\norm{\bvec{r}_i - \bvec{r}_j})$. Thus we see that equation (10.2) in F\&W becomes 
+    \[
+        m\ddot{\bvec{r}} = e\bvec{E} + -m\omega\cp\omega\cp\bvec{r}-2m\omega\cp\dot{\bvec{r}}-m\dot{\omega}\cp\bvec{r}-\sum_{j\neq i}\nabla V_{ij}
+    \]
+    I envision this problem as a cloud of weekly charged flecks of dust whizzing around in our $\bvec{E}$ and week $\bvec{B}$ fields. We can use our tools from chapter 1 of F\&W to find the center of mass of the system and analyse the motion of that point though time. However if some region of the cloud is denser in mass than the other regions, it would have a different $\omega$ value, and we would see this section of the cloud disburse from the rest of it. Similarly, if there was a section of the cloud that was the opposite charge, we would see this section rotate with the complete opposite frequency. In conclusion, if a subset of these interacting particles has a different mass to charge ratio, it will have a different frequency $\omega_L$ this means that the system will have coupled equations as the distance "groups" in the cloud are constantly changing, so the forces caused by their inter particle interactions will be constantly changing. 
+\end{homeworkProblem}
+
+\pagebreak
+
+\begin{homeworkProblem}
+    Assume that over the time interval of interest, the center of mass of the
+    earth moves with approximately constant velocity with respect to the fixed stars
+    and that $\bvec{\omega}$, the angular velocity of the earth, is a
+    constant. Rederive the terrestrial equations of particle motion (11.8) and (11.6)
+    by writing Newton's law in a body-fixed frame with origin at the surface of the
+    earth (Fig. 11.2).
+    \begin{gather*}
+    \bvec{g} = -(GM_eR_e^{-2} - \omega^2 R_e\sin^2\theta) \hat{\bvec{r}}
+    + \tfrac{1}{2}\sin 2\theta\omega^2 R_e \hat{\bvec{\theta}}\\
+    m\ddot{\bvec{r}} = m \bvec{g} - 2m \bvec{\omega}\times \dot{\bvec{r}} 
+    \end{gather*}
+
+    \textbf{Solution}
+    Lets put our origin at some point on the surface of the earth, and we will call it the lab. If $\bvec{R}_e$ is the radius of the earth, $\bvec r$ the position of the system in the lab frame, and $\bvec r'$ the position of the system in a frame at the earths center, then we can describe any point in our lab frame as 
+    \[
+        \bvec{\bvec r} = \bvec{\bvec r'}-\bvec{\bvec R}_e
+    \]
+    Supposing that there where some inertial reference frame hovering above the earth, then labeling things in terms of this inertial reference frame. We let $\bvec{a}$ be the vector pointing from the inertial reference frame to the center of mass of the earth, $\bvec{r_0}$ be the position of the system in the inertial reference frame. Then the relative position of this system can be written as 
+    \[
+        \bvec{r_0} = \bvec{a}+\bvec{r}+\bvec{R_e}
+    \]
+    First we note that in the inertial reference frame, Newton's second law reads as $m\ddot{\bvec{r}}_0 = m\bvec{g_0}$ where $\bvec{g_0} = -GM_e(\bvec{r}+\bvec{R_e})^{-2}\uv{r}$. Implicitly, we assume that the sun is so far away, that the system in the lab is not experiencing any effect from this, so we say that $\bvec{a}$ is constant. Thus taking the second derivatives and substituting out known relationships, we have
+    \[
+        (\bvec{\ddot{r}})_l = \bvec{g_0} - (\bvec{\ddot{R}_e})_i - 2\omega\cp\dot{\bvec{r}}_l - \omega\cp\omega\cp\bvec{r}_l
+    \]
+    But in the inertial reference frame, we see the vector $\bvec{R_e}$ rotating about the center of the earth with angular velocity $\omega$. This means that we can say
+    \[
+        (\bvec{\ddot{R}_e})_i = 2\omega\cp\dot{\bvec{R_e}}_l + \omega\cp\omega\cp\bvec{R_e}_l
+    \]
+    Both of these will give us centrifugal terms, but the centrifugal terms with the earths radius will kill the expression since $||\bvec R_e||>>||\bvec r||$, especially when the particle is resting on the surface of the earth. But in the case where the particle is far away, we do not see these terms collapse. Explicitly, we have
+    \[
+    \begin{split}
+        \omega\cp\omega\cp\bvec{r}&= \omega^2r\sin(\theta)\bvec{r} - \frac{\omega^2r}{2}\sin(2\theta)\uv{\theta}\\
+        \omega\cp\omega\cp\bvec{R_e}&= \omega^2R_e\sin(\theta)\bvec{r} - \frac{\omega^2R_e}{2}\sin(2\theta)\uv{\theta}
+    \end{split}
+    \]
+    and when the above conditions are met, the equations of motion collapse to 
+    \begin{gather*}
+        \bvec{g} = -(GM_eR_e^{-2} - \omega^2 R_e\sin^2\theta) \hat{\bvec{r}}
+        + \tfrac{1}{2}\sin 2\theta\omega^2 R_e \hat{\bvec{\theta}}\\
+         m\ddot{\bvec{r}} = m \bvec{g} - 2m \bvec{\omega}\times \dot{\bvec{r}} 
+    \end{gather*}
+    Essentially, the $F'$ term that the book often throws away is our saving grace. 
+\end{homeworkProblem}
+
+\pagebreak
+
+\begin{homeworkProblem}
+    A cannon is placed on the surface of the earth at colatitude (polar angle)
+    $\theta$ and pointed due east.
+    \begin{enumerate}
+        \item If the cannon barrel makes an angle $\alpha$ with the horizontal, show that the
+        lateral deflection of a projectile when it strikes the earth is
+        $(4V_0^3/g^2)\omega \cos\theta;\sin^2\alpha \cos\alpha$, where $V_0$ is the
+        initial speed of the projectile and $\omega$ is the earth's angular-rotation
+        speed.  What is the direction of this deflection?
+        \item If $R$ is the range of the projectile for the case $\omega=0$, show that the change
+        in the range is given by $(2R^3/g)^{1/2} \omega \sin \theta \bigl[(\cot
+        \alpha)^{1/2} - \tfrac{1}{3}(\tan \alpha)^{3/2}\bigr]$. Neglect terms of order
+        $\omega^2$ throughout.
+    \end{enumerate}
+    \textbf{Solution}\\
+    \textbf{Part (1)}\\
+    Like in the book, we turn to perturbation analysis. Let $\bvec r(t) = \bvec r_0(t)+\bvec r_1(t)$, where $\bvec{r}_0$ describes the trajectory on a non rotating earth, and $\bvec{r}_1$ incorporates the corrections proportional to $\omega$.
+    \\
+    
+    Define the coordinate system as is drawn in Fetter and Walecka where $\hat{\bvec{x}}$ is the south direction, $\hat{\bvec{y}}$ is the eastern direction, and $\hat{\bvec{z}}$ is the vertical direction (since we take $\omega$ as small, it is reasonable to throw the second order $\omega$ terms out of out $\bvec{g}$). So now we can break the velocity down into its components along the $\uv{y}$ and $\uv{z}$ directions. This gives
+    \[
+    \begin{array}{c}
+    V_{y0} = V_0\cos\alpha\\
+    V_{z0} = V_0\sin\alpha
+    \end{array}
+    \]
+    Working backwards, we have the acceleration for the $\bvec{r_0}$ term as,
+    \[
+        \bvec{\ddot{r}}_0 = \bvec{g} = -g\uv{z}
+    \]
+    Now integrating, and setting out initial conditions, we have
+    \[
+    \begin{array}{c}
+    y_0(t) = V_0\cos(\alpha)t\\
+    z_0(t) = V_0\sin(\alpha)t - \frac{gt^2}{2}
+    \end{array}
+    \]
+    Solving for the flight time we get
+    \[
+        t = \frac{2V_0\sin\alpha}{g}
+    \]
+    But from F\&W, we know $\bvec{\ddot{r}}_1 = -2\bvec{\omega}\cp\bvec{\dot{r}}_0$. Thus after we project $\bvec{\omega}$ onto the $\uv{x},\uv{y}$, and $\uv{z}$ basis, we have 
+    \[
+        \bvec{\omega} = 
+        \begin{pmatrix}
+        -\omega\sin(\theta)\\
+        0\\
+        \omega\cos(\theta)
+        \end{pmatrix}
+    \]
+    so thus we have
+    \[
+    \begin{split}
+        \ddot{\bvec{x}}_1 &= -2[\bvec{\omega}\cp\bvec{\dot{r}}_0]_{x}\\
+                          &= 2\omega\cos\theta\cos\alpha\uv{x}\\
+        \bvec{x} &= \frac{4V_0^2}{g}\omega\cos\theta\cos\alpha\sin^2\alpha\uv{x}
+    \end{split}
+    \]
+    Since we defined the $\uv{x}$ direction as south, we see that once we include the angular corrections, the projectile is deflected south. 
+    \\
+    
+    \textbf{Part (2)}
+    We have the range of the projectile for a non rotating earth as
+    \[
+        R_0 = \frac{2V_0^2\cos\alpha\sin\alpha}{g}
+    \]
+    For solving this time for the perturbed $y$ equation, we have
+    \[
+    \begin{split}
+        \ddot{\bvec{y}}_1 &= -2[\omega\cp\bvec{\dot{r}}_0]_y\\
+                          &= -2\omega\sin\theta[V_0\sin\alpha-gt]\\
+        \bvec{y} &= V_0\cos\alpha t_f-\omega V_0\sin\theta\sin\alpha t_f^2+\frac{g\omega}{3}\sin\theta t_f^3
+    \end{split}
+    \]
+    But now we need to use the $\bvec{y}_1$ to find the proper final time after taking into account the rotation. Doing so, we get the equation
+    \[
+        t_f = \frac{2V_0\sin\alpha t}{g(1-\frac{2\omega V_0}{g}\sin\theta\cos\alpha)}
+    \]
+    And thus we have 
+    \[
+    \begin{split}
+         y_f &= V_0\cos\alpha \left(\frac{2V_0\sin\alpha }{g(1-\frac{2\omega V_0}{g}\sin\theta\cos\alpha)}\right)\\
+         &-\omega V_0\sin\theta\sin\alpha \left(\frac{2V_0\sin\alpha }{g(1-\frac{2\omega V_0}{g}\sin\theta\cos\alpha)}\right)^2+\frac{g\omega}{3}\sin\theta \left(\frac{2V_0\sin\alpha }{g(1-\frac{2\omega V_0}{g}\sin\theta\cos\alpha)}\right)^3
+    \end{split}
+    \]
+    First we note that the expansion of $(1-\omega)^{-1}$ is nothing but $1+\omega+O(\omega^2)$. Thus we can expand the expression as this series. In doing so, we throw out second order terms resulting in
+    \[
+    \begin{split}
+        y_f &= \frac{2V_0\cos\alpha\sin\alpha}{g}\left(1+\frac{2V_0\omega}{g}\sin\theta\cos\alpha\right) - \frac{4V_0^3\omega}{g^2}\sin\theta\sin^3\alpha + \frac{8V_0^3\omega}{3g^2}\sin\theta\sin^3\alpha 
+    \end{split}
+    \]
+    Thus the difference between the perturbed range and the non perturbed range gives  
+    \[
+        y_f-R_0 = \frac{4v_0^3}{g^2}\omega\sin\alpha\sin\theta[\cos^2\alpha-1/3\sin^2\alpha]
+    \]
+    Since I don't feel like simplifying this to make sure that these are the same, I instead input my derivation and the books equation into python. In this example I looked at someone launching a cannonball into the city of Paris, i.e., $\alpha = \pi/8$, $\theta = \pi/8$, and $V_0 = 50 m/s$. The difference between the two values is on the order of $10^{-15}$ (-3.55271367880050e-15) so its reasonable to assume that these equations are equivalent. 
+    \\
+    
+    \textbf{Part (3)}
+    I chose here to solve problem 2.3 from F\&W since I don't think I have time to solve the problem above in an inertial frame. Setting up this problem, we have two bodies in a central potential, so we know that the angular momentum can be written as 
+    \[
+        l = mr^2\dot{\phi} = m(R_e+h)^2\dot{\phi} = m(R_e^2+2h^2+O(h^2))\dot{\phi}
+    \]
+    where $h$ is the height above the earth. But when the particle is on the earth, we know $h = 0$, and this reduces to $l = mR_e^2\dot{\phi}_f$. Initially, the angular momentum is nothing but $l = m(R_e^2+2h^2)\dot{\phi}$. From the initial reference frame, we see $\dot{\phi}_i = v_i/r = \omega\sin\theta$. Thus we have the equations 
+    \[
+        l = mR_e^2(1+\frac{2h}{R_e})\omega\sin\theta
+    \]
+    Letting $y = h-1/2gt^2$, we would assume that the object hits the ground at approximately the same time that it would without incorporating the rotational body, thus we can say $t \approx \sqrt{2h/g}$. Thus we have 
+    \[
+    \begin{split}
+        \dot{\phi}(t) &=  \left(1+\frac{gt^2}{R_e}\right)\omega\sin\theta\\
+        R_e\phi(t) &= \left(t+\frac{gt^3}{3R_e}\right)\omega\sin\theta\\
+        R_e\phi(\sqrt{2h/g})          & = \sqrt{2h/g}R_e\omega\sin\theta  +\frac{1}{3}(2h/g)^{3/2}\omega\sin\theta
+    \end{split}
+    \]
+    But this corresponds to the distance the particle travels over the change small change in $\phi$ as the ball drops. The first term in this arc length is nothing but the distance the earth rotates beneath the object. So if we where standing on the surface of the earth, this rotation would not be felt.The second term however, $\frac{1}{3}(2h/g)^{3/2}\omega\sin\theta$ is the amount that the particle deflects eastwards, and would be observed by the people on the surface.
+\end{homeworkProblem}
+
+
+
+
+\end{document}
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
